@@ -153,10 +153,10 @@ key.addEventListener("click", (e) => {
       sumSelectedPrice.innerText = Number(
         (
           Number(sumSelectedPrice.innerText) -
-          Number(mainProductPrice1.textContent)
+          Number(keyQuantity.textContent)* Number(mainProductPrice1.textContent)
         ).toFixed(2)
       );
-      productsQuantity.textContent = Number(productsQuantity.textContent) - 1;
+      productsQuantity.textContent = Number(productsQuantity.textContent) - Number(keyQuantity.textContent);
     }
   }
   shipping();
@@ -206,10 +206,10 @@ mouse.addEventListener("click", (e) => {
       sumSelectedPrice.innerText = Number(
         (
           Number(sumSelectedPrice.innerText) -
-          Number(mainProductPrice2.textContent)
+         Number(mouseQuantity.textContent)*Number(mainProductPrice2.textContent)
         ).toFixed(2)
       );
-      productsQuantity.textContent = Number(productsQuantity.textContent) - 1;
+      productsQuantity.textContent = Number(productsQuantity.textContent) - Number(mouseQuantity.textContent);
     }
   }
   shipping();
