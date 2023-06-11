@@ -36,37 +36,50 @@ console.log(navListBtn[0]);
 // console.log(mainProducts);
 // console.log(quantity[0].textContent);
 // console.log(typeof Number(mainProductLinePrice[0].textContent))
+//**************************************************************** */
+let mac=mainProducts[0]
+let key=mainProducts[1]
+let mouse=mainProducts[2]
+let macPrice=mainProductLinePrice[0]
+let keyPrice=mainProductLinePrice[1]
+let mousePrice=mainProductLinePrice[2]
+let macQuantity=quantity[0]
+let keyQuantity=quantity[1]
+let mouseQuantity=quantity[2]
+
+
 
 // **********************CLİCK************************************
-mainProducts[0].addEventListener("click", (e) => {
+
+mac.addEventListener("click", (e) => {
     
   if (e.target.classList.contains("fa-plus")) {
-    mainProductLinePrice[0].textContent = Number(
+    macPrice.textContent = Number(
       (
-        Number(mainProductLinePrice[0].textContent) +
+        Number(macPrice.textContent) +
         Number(mainProductPrice.textContent)
       ).toFixed(2)
     );
-    quantity[0].textContent = Number(quantity[0].textContent) + 1;
-    // localStorage.setItem("quantity[0]",quantity[0].textContent)
+    macQuantity.textContent = Number(macQuantity.textContent) + 1;
+    // localStorage.setItem("macQuantity",macQuantity.textContent)
     sumSelectedPrice.innerText = Number(
       (
         Number(sumSelectedPrice.textContent) +
         Number(mainProductPrice.textContent)
       ).toFixed(2)
     );
-    // console.log(quantity[0].textContent);
+    // console.log(macQuantity.textContent);
     productsQuantity.textContent = Number(productsQuantity.textContent) + 1;
   }
   if (e.target.classList.contains("fa-minus")) {
-    if (Number(quantity[0].textContent) > 1) {
-      mainProductLinePrice[0].textContent = Number(
+    if (Number(macQuantity.textContent) > 1) {
+      macPrice.textContent = Number(
         (
-          Number(mainProductLinePrice[0].textContent) -
+          Number(macPrice.textContent) -
           Number(mainProductPrice.textContent)
         ).toFixed(2)
       );
-      quantity[0].textContent = Number(quantity[0].textContent) - 1;
+      macQuantity.textContent = Number(macQuantity.textContent) - 1;
       sumSelectedPrice.innerText = Number(
         (
           Number(sumSelectedPrice.innerText) -
@@ -77,21 +90,20 @@ mainProducts[0].addEventListener("click", (e) => {
     }
   }
   if (e.target.classList.contains("fa-trash-can")) {
-    // console.log(Number(quantity[0].textContent));
-    // console.log(Number(productsQuantity.textContent));
-    const removedQuantity = quantity[0].textContent;
+    console.log(Number(macQuantity.textContent));
+    console.log(Number(productsQuantity.textContent));
 
     if (confirm("Do you want to remove the Macbook M2 Air?")) {
       e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.remove();
       sumSelectedPrice.innerText = Number(
         (
-          Number(sumSelectedPrice.innerText) -(removedQuantity * Number(mainProductPrice.textContent))
+          Number(sumSelectedPrice.innerText) -(Number(macQuantity.textContent) * Number(mainProductPrice.textContent))
           
         ).toFixed(2)
       );
       
-      productsQuantity.textContent = Number(Number(productsQuantity.textContent) - removedQuantity)
-    //   productsQuantity.textContent = Number(Number(productsQuantity.textContent) - Number(localStorage.getItem(quantity[0]).value))
+      productsQuantity.textContent = Number(Number(productsQuantity.textContent) - macQuantity.textContent)
+    //   productsQuantity.textContent = Number(Number(productsQuantity.textContent) - Number(localStorage.getItem(macQuantity).value))
     }
   }
   shipping();
@@ -99,33 +111,33 @@ mainProducts[0].addEventListener("click", (e) => {
   total();
 });
 
-mainProducts[1].addEventListener("click", (e) => {
+key.addEventListener("click", (e) => {
   if (e.target.classList.contains("fa-plus")) {
-    mainProductLinePrice[1].textContent = Number(
+    keyPrice.textContent = Number(
       (
-        Number(mainProductLinePrice[1].textContent) +
+        Number(keyPrice.textContent) +
         Number(mainProductPrice1.textContent)
       ).toFixed(2)
     );
-    quantity[1].textContent = Number(quantity[1].textContent) + 1;
+    keyQuantity.textContent = Number(keyQuantity.textContent) + 1;
     sumSelectedPrice.innerText = Number(
       (
         Number(sumSelectedPrice.textContent) +
         Number(mainProductPrice1.textContent)
       ).toFixed(2)
     );
-    console.log(quantity[1].textContent);
+    console.log(keyQuantity.textContent);
     productsQuantity.textContent = Number(productsQuantity.textContent) + 1;
   }
   if (e.target.classList.contains("fa-minus")) {
-    if (Number(quantity[1].textContent) > 1) {
-      mainProductLinePrice[1].textContent = Number(
+    if (Number(keyQuantity.textContent) > 1) {
+      keyPrice.textContent = Number(
         (
-          Number(mainProductLinePrice[1].textContent) -
+          Number(keyPrice.textContent) -
           Number(mainProductPrice1.textContent)
         ).toFixed(2)
       );
-      quantity[1].textContent = Number(quantity[1].textContent) - 1;
+      keyQuantity.textContent = Number(keyQuantity.textContent) - 1;
       sumSelectedPrice.innerText = Number(
         (
           Number(sumSelectedPrice.innerText) -
@@ -136,16 +148,15 @@ mainProducts[1].addEventListener("click", (e) => {
     }
   }
   if (e.target.classList.contains("fa-trash-can")) {
-    const removedQuantity = quantity[0].textContent;
     if (confirm("Do you want to remove the Apple Keyboard?")) {
       e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.remove();
       sumSelectedPrice.innerText = Number(
         (
           Number(sumSelectedPrice.innerText) -
-         Number(removedQuantity)* Number(mainProductPrice1.textContent)
+          Number(mainProductPrice1.textContent)
         ).toFixed(2)
       );
-      productsQuantity.textContent = Number(productsQuantity.textContent) - Number(removedQuantity);
+      productsQuantity.textContent = Number(productsQuantity.textContent) - 1;
     }
   }
   shipping();
@@ -153,29 +164,52 @@ mainProducts[1].addEventListener("click", (e) => {
   total();
 });
 
-mainProducts[2].addEventListener("click", (e) => {
+mouse.addEventListener("click", (e) => {
   if (e.target.classList.contains("fa-plus")) {
-    mainProductLinePrice[2].textContent = Number((Number(mainProductLinePrice[2].textContent) + Number(mainProductPrice2.textContent)).toFixed(2));
-    quantity[2].textContent = Number(quantity[2].textContent) + 1;
-    sumSelectedPrice.innerText = Number((Number(sumSelectedPrice.textContent)+Number(mainProductPrice2.textContent)).toFixed(2)
+    mousePrice.textContent = Number(
+      (
+        Number(mousePrice.textContent) +
+        Number(mainProductPrice2.textContent)
+      ).toFixed(2)
     );
-    console.log(quantity[2].textContent);
+    mouseQuantity.textContent = Number(mouseQuantity.textContent) + 1;
+    sumSelectedPrice.innerText = Number(
+      (
+        Number(sumSelectedPrice.textContent) +
+        Number(mainProductPrice2.textContent)
+      ).toFixed(2)
+    );
+    console.log(mouseQuantity.textContent);
     productsQuantity.textContent = Number(productsQuantity.textContent) + 1;
   }
   if (e.target.classList.contains("fa-minus")) {
-    if (Number(quantity[2].textContent) > 1) {
-      mainProductLinePrice[2].textContent = Number(( Number(mainProductLinePrice[2].textContent) - Number(mainProductPrice2.textContent)).toFixed(2));
-      quantity[2].textContent = Number(quantity[2].textContent) - 1;
-      sumSelectedPrice.innerText = Number((Number(sumSelectedPrice.innerText) -Number(mainProductPrice2.textContent)).toFixed(2));
+    if (Number(mouseQuantity.textContent) > 1) {
+      mousePrice.textContent = Number(
+        (
+          Number(mousePrice.textContent) -
+          Number(mainProductPrice2.textContent)
+        ).toFixed(2)
+      );
+      mouseQuantity.textContent = Number(mouseQuantity.textContent) - 1;
+      sumSelectedPrice.innerText = Number(
+        (
+          Number(sumSelectedPrice.innerText) -
+          Number(mainProductPrice2.textContent)
+        ).toFixed(2)
+      );
       productsQuantity.textContent = Number(productsQuantity.textContent) - 1;
     }
   }
   if (e.target.classList.contains("fa-trash-can")) {
-    const removedQuantity = quantity[0].textContent;
     if (confirm("Do you want to remove the Apple Mouse?")) {
       e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.remove();
-      sumSelectedPrice.innerText = Number((Number(sumSelectedPrice.innerText) -Number(removedQuantity)*Number(mainProductPrice2.textContent)).toFixed(2));
-      productsQuantity.textContent = Number(productsQuantity.textContent) - Number(removedQuantity);
+      sumSelectedPrice.innerText = Number(
+        (
+          Number(sumSelectedPrice.innerText) -
+          Number(mainProductPrice2.textContent)
+        ).toFixed(2)
+      );
+      productsQuantity.textContent = Number(productsQuantity.textContent) - 1;
     }
   }
   shipping();
