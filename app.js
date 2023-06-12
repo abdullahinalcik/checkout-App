@@ -157,6 +157,7 @@ key.addEventListener("click", (e) => {
         ).toFixed(2)
       );
       productsQuantity.textContent = Number(productsQuantity.textContent) - Number(keyQuantity.textContent);
+      
     }
   }
   shipping();
@@ -241,9 +242,11 @@ navListBtn[0].addEventListener("click", (e)=>{
 const shipping = () => {
   if (Number(sumSelectedPrice.textContent) >= 3000) {
     cartShipping.textContent = 0;
-  } else {
+  } 
+  else {
     cartShipping.textContent = 25.99;
   }
+  if(Number(productsQuantity.textContent)===0){ cartShipping.textContent = 0;}
 };
 
 const tax = () => {
